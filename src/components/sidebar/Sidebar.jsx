@@ -26,12 +26,12 @@ export default function Sidebar({ show, isMobile, windowWidth, onClose, onFileCl
         const pathParts = currentPath.split('/').filter(Boolean)
         const fileName = pathParts[pathParts.length - 1]
 
-        if (currentModel === 'notepad' && fileName && fileName.endsWith('.txt')) {
+        if (currentModel === 'notepad' && fileName && fileName.endsWith('.html')) {
             fetch(`/html/${fileName}`)
                 .then(response => response.text())
                 .then(text => setFileContent(text))
                 .catch(err => setFileContent(
-                    fileName === 'about-me.txt' 
+                    fileName === 'about-me.html' 
                         ? 'Error loading file' 
                         : `<h1>${fileName}</h1><p>File not found</p>`
                 ))

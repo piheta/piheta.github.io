@@ -18,12 +18,12 @@ export function useTextModel(fileName) {
 
     // Map filename to the corresponding loaded model
     const modelMap = {
-        'about-me.txt': aboutMeGltf,
-        'cv.txt': cvGltf,
-        'smidle.txt': smidleGltf,
-        'tidly.txt': tidlyGltf,
-        'bachelor.txt': bachelorGltf,
-        'sept.txt': septGltf
+        'about-me.html': aboutMeGltf,
+        'cv.html': cvGltf,
+        'smidle.html': smidleGltf,
+        'tidly.html': tidlyGltf,
+        'bachelor.html': bachelorGltf,
+        'sept.html': septGltf
     }
 
     // Return the specific model or null if not found
