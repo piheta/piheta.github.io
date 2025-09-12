@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export function useNavigation() {
     const [currentModel, setCurrentModel] = useState('computer')
@@ -11,7 +11,7 @@ export function useNavigation() {
             // Go back one level in the stack
             const newStack = navigationStack.slice(0, -1)
             const previousState = newStack[newStack.length - 1]
-            
+
             setNavigationStack(newStack)
             setCurrentModel(previousState.model)
             setCurrentFolderContents(previousState.folderContents)
@@ -22,13 +22,13 @@ export function useNavigation() {
             setCurrentFolderContents(null)
             setCurrentFileName('')
             setNavigationStack([{ model: 'computer', folderContents: null, fileName: '' }])
-            
+
             // Call the callback for additional cleanup (like closing sidebar, camera reset)
             if (onRootClose) {
                 onRootClose()
             }
         }
-        
+
     }
 
     const handleFileClick = (modelType, fileName = '', folderContents = null) => {
@@ -36,8 +36,8 @@ export function useNavigation() {
         setCurrentFileName(fileName)
 
         // Add to navigation stack
-        const newState = { 
-            model: modelType, 
+        const newState = {
+            model: modelType,
             folderContents: modelType === 'folder' ? folderContents : null,
             fileName: fileName || ''
         }
@@ -48,6 +48,29 @@ export function useNavigation() {
             setCurrentFolderContents(folderContents)
         }
     }
+
+    // Handle browser back/forward buttons
+    useEffect(() => {
+        const handlePopState = (event) => {
+            // Use our navigation when browser back is pressed
+            if (navigationStack.length > 1) {
+                event.preventDefault()
+                handleClose()
+            }
+        }
+
+        window.addEventListener('popstate', handlePopState)
+        return () => window.removeEventListener('popstate', handlePopState)
+    }, [navigationStack.length, handleClose])
+
+    // Push history state when navigation changes
+    useEffect(() => {
+        if (navigationStack.length > 1) {
+            window.history.pushState({ depth: navigationStack.length }, '', '/')
+        } else {
+            window.history.replaceState({ depth: 1 }, '', '/')
+        }
+    }, [navigationStack.length])
 
     return {
         currentModel,
