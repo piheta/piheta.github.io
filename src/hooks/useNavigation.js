@@ -1,91 +1,59 @@
-import { useState, useEffect } from 'react'
-import {
-    getPathParts,
-    navigateBack,
-    buildNewPath,
-    getNavigationState,
-    getFolderContents,
-} from '../utils/navigationUtils'
+import { useState } from 'react'
 
 export function useNavigation() {
-    const [currentPath, setCurrentPath] = useState('/')
     const [currentModel, setCurrentModel] = useState('computer')
     const [currentFolderContents, setCurrentFolderContents] = useState(null)
-
-    const pathParts = getPathParts(currentPath)
-    const navigationState = getNavigationState(pathParts)
+    const [currentFileName, setCurrentFileName] = useState('')
+    const [navigationStack, setNavigationStack] = useState([{ model: 'computer', folderContents: null, fileName: '' }])
 
     const handleClose = (onRootClose = null) => {
-        if (pathParts.length > 1) {
-            // Go back one level
-            const newPath = navigateBack(currentPath)
-            setCurrentPath(newPath)
-            window.history.pushState(null, '', newPath)
-
-            if (pathParts.length === 2) {
-                // Back to computer view from folder
-                setCurrentModel('computer')
-                setCurrentFolderContents(null)
-            } else if (pathParts.length === 3) {
-                // Back to folder view from file
-                setCurrentModel('folder')
-                // Restore folder contents based on the folder name
-                const folderContents = getFolderContents(navigationState.folderName)
-                setCurrentFolderContents(folderContents)
-            } else {
-                // Going back to a parent folder - clear folder contents to show root
-                setCurrentFolderContents(null)
-            }
+        if (navigationStack.length > 1) {
+            // Go back one level in the stack
+            const newStack = navigationStack.slice(0, -1)
+            const previousState = newStack[newStack.length - 1]
+            
+            setNavigationStack(newStack)
+            setCurrentModel(previousState.model)
+            setCurrentFolderContents(previousState.folderContents)
+            setCurrentFileName(previousState.fileName || '')
         } else {
-            // Already at root or computer level, return to root
+            // Already at root, close sidebar
             setCurrentModel('computer')
-            setCurrentPath('/')
             setCurrentFolderContents(null)
-            window.history.pushState(null, '', '/')
-
+            setCurrentFileName('')
+            setNavigationStack([{ model: 'computer', folderContents: null, fileName: '' }])
+            
             // Call the callback for additional cleanup (like closing sidebar, camera reset)
             if (onRootClose) {
                 onRootClose()
             }
         }
+        
     }
 
     const handleFileClick = (modelType, fileName = '', folderContents = null) => {
         setCurrentModel(modelType)
+        setCurrentFileName(fileName)
 
-        const newPath = buildNewPath(currentPath, fileName, modelType)
-        setCurrentPath(newPath)
-        window.history.pushState(null, '', newPath)
+        // Add to navigation stack
+        const newState = { 
+            model: modelType, 
+            folderContents: modelType === 'folder' ? folderContents : null,
+            fileName: fileName || ''
+        }
+        setNavigationStack(prev => [...prev, newState])
 
-        // Store folder contents if it's a folder, otherwise preserve current state
+        // Store folder contents if it's a folder
         if (modelType === 'folder' && folderContents) {
             setCurrentFolderContents(folderContents)
         }
     }
 
-    // Effect to handle direct URL changes or when sidebar opens at root
-    useEffect(() => {
-        if (currentPath === '/') {
-            setCurrentModel('computer')
-        }
-    }, [currentPath])
-
-    const ensureComputerPath = () => {
-        if (currentPath === '/') {
-            setCurrentPath('/computer')
-            window.history.pushState(null, '', '/computer')
-        }
-    }
-
     return {
-        currentPath,
         currentModel,
         currentFolderContents,
-        navigationState,
-        pathParts,
-        setCurrentPath,
+        currentFileName,
         handleClose,
-        handleFileClick,
-        ensureComputerPath
+        handleFileClick
     }
 }

@@ -7,16 +7,12 @@ import { useTextModel } from '../../hooks/useTextModel'
 // Preload the notepad model
 useGLTF.preload('/notepad.glb')
 
-export default function Notepad({ onClick, currentPath }) {
+export default function Notepad({ onClick, fileName }) {
     const gltf = useGLTF('/notepad.glb')
     const { scale, isMobile } = useResponsiveScale(0.5)
     const animScale = usePopAnimation()
     
-    // Get the filename from the current path
-    const pathParts = currentPath?.split('/').filter(Boolean) || []
-    const fileName = pathParts[pathParts.length - 1]
-    
-    // Get the appropriate text model
+    // Get the appropriate text model using the passed fileName
     const textGltf = useTextModel(fileName)
     
     const meshRef = useRef()

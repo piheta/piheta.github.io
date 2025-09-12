@@ -1,5 +1,5 @@
 import { Canvas } from '@react-three/fiber'
-import { useRef, useState, useEffect } from 'react'
+import { useRef, useState } from 'react'
 import { Scene, Sidebar } from './components'
 import { useNavigation } from './hooks/useNavigation'
 import { useViewport } from './hooks/useViewport'
@@ -20,14 +20,13 @@ function App() {
 
     const { isMobile, windowWidth } = useViewport()
     const {
-        currentPath,
         currentModel,
         currentFolderContents,
+        currentFileName,
         handleClose: navigateClose,
-        handleFileClick,
-        ensureComputerPath
+        handleFileClick
     } = useNavigation()
-    
+
 
     const getCameraPosition = () => isMobile ? CAMERA_POSITIONS.mobile : CAMERA_POSITIONS.desktop
 
@@ -43,15 +42,9 @@ function App() {
 
     useKeyboardEvents({
         showSidebar,
-        currentPath,
         onEscape: handleClose
     })
 
-    useEffect(() => {
-        if (showSidebar && currentPath === '/') {
-            ensureComputerPath()
-        }
-    }, [showSidebar, currentPath, ensureComputerPath])
 
 
     return (
@@ -74,7 +67,7 @@ function App() {
                         onModelClick={() => setShowSidebar(true)}
                         cameraRef={cameraRef}
                         currentModel={currentModel}
-                        currentPath={currentPath}
+                        currentFileName={currentFileName}
                     />
                 </Canvas>
             </div>
@@ -86,7 +79,7 @@ function App() {
                 onClose={handleClose}
                 onFileClick={handleFileClick}
                 currentModel={currentModel}
-                currentPath={currentPath}
+                currentFileName={currentFileName}
                 currentFolderContents={currentFolderContents}
             />
         </div>

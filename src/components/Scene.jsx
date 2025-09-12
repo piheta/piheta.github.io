@@ -1,7 +1,7 @@
 import { CameraControls } from '@react-three/drei'
 import { Computer, Notepad, Folder } from './models'
 
-export default function Scene({ onModelClick, cameraRef, currentModel, currentPath }) {
+export default function Scene({ onModelClick, cameraRef, currentModel, currentFileName }) {
     const handleModelClick = () => {
         if (cameraRef.current) {
             cameraRef.current.setLookAt(0, 0.75, 5, 0, 0, 0, true)
@@ -14,7 +14,7 @@ export default function Scene({ onModelClick, cameraRef, currentModel, currentPa
             case 'computer':
                 return <Computer onClick={handleModelClick} />
             case 'notepad':
-                return <Notepad onClick={handleModelClick} currentPath={currentPath} />
+                return <Notepad onClick={handleModelClick} fileName={currentFileName} />
             case 'folder':
                 return <Folder onClick={handleModelClick} />
             default:

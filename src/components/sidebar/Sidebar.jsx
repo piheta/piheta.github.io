@@ -10,7 +10,7 @@ import {
     MOBILE_SIDEBAR_HEIGHT_DIVISOR 
 } from '../../constants'
 
-export default function Sidebar({ show, isMobile, windowWidth, onClose, onFileClick, currentModel, currentPath, currentFolderContents }) {
+export default function Sidebar({ show, isMobile, windowWidth, onClose, onFileClick, currentModel, currentFileName, currentFolderContents }) {
     const [showDialog, setShowDialog] = useState(false)
     const [fileContent, setFileContent] = useState('')
 
@@ -23,22 +23,19 @@ export default function Sidebar({ show, isMobile, windowWidth, onClose, onFileCl
     }, [show])
 
     useEffect(() => {
-        const pathParts = currentPath.split('/').filter(Boolean)
-        const fileName = pathParts[pathParts.length - 1]
-
-        if (currentModel === 'notepad' && fileName && fileName.endsWith('.html')) {
-            fetch(`/html/${fileName}`)
+        if (currentModel === 'notepad' && currentFileName && currentFileName.endsWith('.html')) {
+            fetch(`/html/${currentFileName}`)
                 .then(response => response.text())
                 .then(text => setFileContent(text))
                 .catch(err => setFileContent(
-                    fileName === 'about-me.html' 
+                    currentFileName === 'about-me.html' 
                         ? 'Error loading file' 
-                        : `<h1>${fileName}</h1><p>File not found</p>`
+                        : `<h1>${currentFileName}</h1><p>File not found</p>`
                 ))
         } else {
             setFileContent('')
         }
-    }, [currentModel, currentPath])
+    }, [currentModel, currentFileName])
 
     const isTextFile = currentModel === 'notepad'
 
