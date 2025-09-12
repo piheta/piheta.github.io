@@ -1,0 +1,48 @@
+<h1>Bachelor Thesis</h1>
+<h2>Warehouse System - Voice & Touch Interface</h2>
+
+<h3>Project Overview</h3>
+<p>My bachelor thesis project involved the development of a comprehensive system for efficient product plucking in a warehouse setting. Our application incorporated a unique concept where employees could simultaneously utilize voice and touch interfaces for seamless plucking operations.</p>
+
+<h3>Technical Implementation</h3>
+<ul>
+<li><strong>Frontend:</strong> <a href="https://gitlab.com/IDATA-2900-Group-1/voice-pick-frontend" target="_blank">SwiftUI</a> interface supporting both iPhone and watchOS platforms</li>
+<li><strong>Backend:</strong> Robust <a href="https://gitlab.com/IDATA-2900-Group-1/voice-pick-backend" target="_blank">Spring Boot API</a> for backend operations</li>
+<li><strong>Speech Technology:</strong> Speech recognition and text-to-speech capabilities</li>
+<li><strong>Security:</strong> User authentication system</li>
+<li><strong>Management:</strong> Comprehensive warehouse management capabilities</li>
+</ul>
+
+<h3>Key Features</h3>
+<ul>
+<li>Dual voice and touch interface for hands-free operation</li>
+<li>Cross-platform support (iPhone and Apple Watch)</li>
+<li>Real-time warehouse inventory management</li>
+<li>Voice-guided picking instructions</li>
+<li>Seamless user authentication</li>
+</ul>
+
+<h3>Project Impact</h3>
+<p>The system was designed to address real needs of warehouse employees, making it a versatile tool for modern warehouses. The combination of voice and touch interfaces provides accessibility and efficiency improvements for warehouse workers.</p>
+
+<h3>Resources</h3>
+<ul>
+<li><strong>Thesis:</strong> <a href="https://ntnuopen.ntnu.no/ntnu-xmlui/handle/11250/3076971" target="_blank">NTNU Open Repository</a></li>
+<li><strong>Demo Video:</strong> <a href="https://www.youtube.com/watch?v=ldt2QxZ4jbU" target="_blank">Watch Demo</a></li>
+<li><strong>Frontend Code:</strong> <a href="https://gitlab.com/IDATA-2900-Group-1/voice-pick-frontend" target="_blank">SwiftUI Repository</a></li>
+<li><strong>Backend Code:</strong> <a href="https://gitlab.com/IDATA-2900-Group-1/voice-pick-backend" target="_blank">Spring Boot Repository</a></li>
+</ul>
+
+<h3>Contributors</h3>
+<ul>
+<li><strong><a href="https://github.com/piheta" target="_blank">Mateusz Picheta</a></strong></li>
+<li><strong><a href="https://github.com/jKm00" target="_blank">Joakim Edvardsen</a></strong></li>
+<li><strong><a href="https://github.com/PMolnes" target="_blank">Petter Molnes</a></strong></li>
+<li><strong><a href="https://github.com/Haukaun" target="_blank">Håkon Sætre</a></strong></li>
+</ul>
+
+<h3>Academic Details</h3>
+<p><strong>Institution:</strong> Norwegian University of Science and Technology (NTNU)<br>
+<strong>Program:</strong> Bachelor of Science in Computer Science<br>
+<strong>Project Type:</strong> Bachelor Group Project<br>
+<strong>Focus:</strong> Human-Computer Interaction & Mobile Development</p>

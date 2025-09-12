@@ -1,0 +1,90 @@
+<h1>Curriculum Vitae</h1>
+<h2>Mateusz Picheta</h2>
+<p><strong>Senior Cloud Engineer</strong></p>
+<p>Email: m@picheta.dev</p>
+<hr>
+<h3>Professional Summary</h3>
+<p>Senior Cloud Engineer with extensive experience in DevOps, cloud infrastructure, and automation. Specialized in Kubernetes, Infrastructure as Code, and CI/CD pipelines. Nearly a decade of experience working in multicultural environments, delivering scalable and secure cloud-native solutions. Passionate about cloud native development, decentralized systems, and automating complex workflows.</p>
+<h3>Technical Skills</h3>
+<h4>Cloud & DevOps</h4>
+<ul>
+<li><strong>Cloud Platforms:</strong> Azure, AWS</li>
+<li><strong>Containerization:</strong> Kubernetes, Docker</li>
+<li><strong>Infrastructure as Code:</strong> Terraform, Ansible</li>
+<li><strong>GitOps:</strong> Flux, ArgoCD</li>
+<li><strong>CI/CD:</strong> GitHub Actions, Gitlab Workflows, Azure DevOps</li>
+<li><strong>Monitoring:</strong> Prometheus, Grafana, Loki</li>
+</ul>
+<h4>Programming & Development</h4>
+<ul>
+<li><strong>Languages:</strong> Golang, Java, Python, Bash</li>
+<li><strong>Web Development:</strong> React, Svelte, API development</li>
+<li><strong>Operating Systems:</strong> Linux, FreeBSD, Windows Server</li>
+<li><strong>Databases:</strong> PostgreSQL, MongoDB</li>
+</ul>
+<h3>Professional Experience</h3>
+<h4>Senior Cloud Engineer | SopraSteria (January 2025 - Present)</h4>
+<ul>
+<li>Developing and deploying cloud infrastructure and applications for enterprise clients</li>
+<li>Implementing scalable, reliable, and secure cloud-native solutions</li>
+<li>Working with software development, Infrastructure as Code (IaC), and Linux systems</li>
+<li>Collaborating with cross-functional teams to deliver digital transformation projects</li>
+</ul>
+<h4>Cloud Native DevOps | Tietoevry (September 2023 - January 2025)</h4>
+<ul>
+<li>Developed and deployed various cloud infrastructure and applications</li>
+<li>Set up CI/CD pipelines and Infrastructure as Code (IaC) workflows</li>
+<li>Automated deployment processes using modern DevOps practices</li>
+<li>Implemented GitOps methodologies for streamlined deployments</li>
+</ul>
+<h4>DevOps Engineer | Solwr (October 2022 - September 2023)</h4>
+<ul>
+<li>Automated deployment processes using Infrastructure as Code</li>
+<li>Managed and secured Linux servers in production environments</li>
+<li>Developed software solutions to streamline warehouse operations</li>
+<li>Created cost-saving VM scheduling solutions for automated shutdowns</li>
+</ul>
+<h4>IT Operations Technician | Stokke (October 2021 - October 2022)</h4>
+<ul>
+<li>Migrated on-premises printing infrastructure to Azure cloud</li>
+<li>Managed NAS and cloud storage solutions</li>
+<li>Applied critical security patches including log4j vulnerabilities</li>
+<li>Maintained hybrid Linux and Windows server environments</li>
+</ul>
+<h4>IT Operations Apprentice | Ålesund VGS (June 2018 - May 2020)</h4>
+<ul>
+<li>Managed Linux and Windows server infrastructure</li>
+<li>Developed web applications for internal use</li>
+<li>Provided technical support to end-users and staff</li>
+<li>Gained foundational experience in IT operations and system administration</li>
+</ul>
+<h3>Education</h3>
+<h4>Bachelor of Science in Computer Science</h4>
+<p><strong>Norwegian University of Science and Technology (NTNU)</strong> | May 2020 - June 2023</p>
+<ul>
+<li>Focus on Software Engineering, Data Structures, and Algorithms</li>
+<li>Specialized coursework in DevOps and software development</li>
+<li>Developed strong foundation in software engineering principles</li>
+</ul>
+<h4>ICT Program</h4>
+<p><strong>Ålesund Videregående Skole (High School)</strong> | 2016 - 2020</p>
+<ul>
+<li>Graduated with specialization in Information and Communication Technology</li>
+<li>Later employed by the school as IT Operations Apprentice</li>
+<li>Earned Certificate of Apprenticeship in ICT (Fagbrev IKT)</li>
+</ul>
+<h3>Certifications</h3>
+<ul>
+<li><strong>LFCS:</strong> Linux Foundation Certified Systems Administrator</li>
+<li><strong>Terraform Associate (003):</strong> HashiCorp Certified</li>
+<li><strong>KCNA:</strong> Kubernetes and Cloud Native Associate</li>
+<li><strong>CGOA:</strong> Certified GitOps Associate</li>
+<li><strong>Fagbrev IKT:</strong> Certificate of Apprenticeship in ICT</li>
+<li><strong>AZ-900:</strong> Microsoft Azure Fundamentals</li>
+</ul>
+<h3>Languages</h3>
+<ul>
+<li><strong>English:</strong> Native/Bilingual proficiency</li>
+<li><strong>Norwegian:</strong> Native/Bilingual proficiency</li>
+<li><strong>Polish:</strong> Native/Bilingual proficiency</li>
+</ul>
