@@ -1,13 +1,1419 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/icons/favico.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>picheta.dev</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mateusz Picheta · Senior Platform Engineer</title>
+    <meta name="description"
+        content="Senior platform engineer with 8+ years in cloud-native infrastructure. I build self-service platforms on Kubernetes with Crossplane, Flux, Go, and Terraform. Based in Trondheim, Norway.">
+    <link rel="canonical" href="https://picheta.dev/">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://picheta.dev/">
+    <meta property="og:title" content="Mateusz Picheta · Senior Platform Engineer">
+    <meta property="og:description"
+        content="8+ years in cloud-native infrastructure. I build self-service platforms on Kubernetes. Based in Trondheim, Norway.">
+    <meta property="og:image" content="https://picheta.dev/og-image.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- X/Twitter: only the large-image hint; everything else falls back to Open Graph -->
+    <meta name="twitter:card" content="summary_large_image">
+
+    <script>(function () {try {var t = localStorage.getItem('theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); document.documentElement.setAttribute('data-theme', t);} catch (e) { } })();</script>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;450;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --ink: #0B0E14;
+            --teal: #1B3A4B;
+            --accent: #E94F37;
+            --accent-soft: #fbe6e1;
+            --paper: #F7F5F0;
+            --card: #FFFFFF;
+            --line: #E4E0D6;
+            --muted: #6B7280;
+            --muted2: #8A8F99;
+            --good: #1F8A5B;
+            --solid: #0B0E14;
+            --solid-fg: #F7F5F0;
+            --radius: 14px;
+            --mono: 'JetBrains Mono', ui-monospace, monospace;
+            --disp: 'Space Grotesk', system-ui, sans-serif;
+            --body: 'Inter', system-ui, sans-serif;
+        }
+
+        [data-theme="dark"] {
+            --ink: #EDEAE2;
+            --teal: #7FB4C4;
+            --accent: #FF6A52;
+            --accent-soft: #2a1714;
+            --paper: #0B0E14;
+            --card: #12161F;
+            --line: #222834;
+            --muted: #8A92A0;
+            --muted2: #6B7280;
+            --good: #3FBE82;
+            --solid: #1f3a4b;
+            --solid-fg: #EDEAE2;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0
+        }
+
+        html {
+            scroll-behavior: smooth
+        }
+
+        body {
+            background: var(--paper);
+            color: var(--ink);
+            font-family: var(--body);
+            font-size: 16px;
+            line-height: 1.55;
+            -webkit-font-smoothing: antialiased;
+            transition: background .35s ease, color .35s ease;
+        }
+
+        ::selection {
+            background: var(--accent);
+            color: #fff
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none
+        }
+
+        .wrap {
+            max-width: 736px;
+            margin: 0 auto;
+            padding: 0 24px
+        }
+
+        /* ---------- NAV ---------- */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            backdrop-filter: blur(10px);
+            background: color-mix(in srgb, var(--paper) 70%, transparent)
+        }
+
+        .nav-in {
+            max-width: 736px;
+            margin: 0 auto;
+            padding: 14px 24px;
+            display: flex;
+            align-items: center;
+            gap: 22px
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 22px;
+            font-family: var(--mono);
+            font-size: 14px;
+            letter-spacing: .02em
+        }
+
+        .nav-links a {
+            color: var(--muted);
+            transition: color .2s
+        }
+
+        .nav-links a:hover {
+            color: var(--accent)
+        }
+
+        .nav-spacer {
+            flex: 1
+        }
+
+        .icon-btn {
+            width: 34px;
+            height: 34px;
+            border: none;
+            border-radius: 9px;
+            display: grid;
+            place-items: center;
+            background: transparent;
+            cursor: pointer;
+            color: var(--ink);
+            transition: .2s
+        }
+
+        .icon-btn:hover {
+            color: var(--accent)
+        }
+
+        /* ---------- HERO ---------- */
+        header {
+            padding: 64px 0 40px
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr auto;
+            gap: 40px;
+            align-items: center
+        }
+
+        h1 {
+            font-family: var(--disp);
+            font-weight: 700;
+            font-size: clamp(34px, 5vw, 48px);
+            line-height: 1.04;
+            letter-spacing: -.02em
+        }
+
+        .role {
+            font-family: var(--mono);
+            font-size: 14px;
+            color: var(--teal);
+            margin-top: 18px;
+            font-weight: 500
+        }
+
+        .blurb {
+            margin-top: 14px;
+            max-width: 46ch;
+            color: var(--ink);
+            opacity: .86;
+            font-size: 17px
+        }
+
+        .relocate {
+            margin-top: 18px;
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            font-family: var(--mono);
+            font-size: 12.5px;
+            padding: 6px 12px;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            background: var(--card)
+        }
+
+        .hinomaru {
+            width: 11px;
+            height: 11px;
+            border-radius: 50%;
+            background: var(--accent);
+            box-shadow: 0 0 0 3px var(--accent-soft)
+        }
+
+        .actions {
+            margin-top: 26px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: var(--mono);
+            font-size: 13px;
+            padding: 9px 15px;
+            border-radius: 10px;
+            border: 1px solid var(--solid);
+            background: var(--solid);
+            color: var(--solid-fg);
+            transition: .2s;
+            cursor: pointer
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px -8px var(--solid)
+        }
+
+        .social {
+            display: flex;
+            gap: 8px
+        }
+
+        .social a {
+            width: 38px;
+            height: 38px;
+            border: 1px solid var(--line);
+            border-radius: 10px;
+            display: grid;
+            place-items: center;
+            background: var(--card);
+            color: var(--muted);
+            transition: .2s
+        }
+
+        .social a:hover {
+            color: var(--accent);
+            border-color: var(--accent);
+            transform: translateY(-2px)
+        }
+
+        /* avatar / manifest card */
+        .card-id {
+            width: fit-content;
+            border-radius: var(--radius);
+            background: var(--card);
+            overflow: hidden;
+            box-shadow: 0 20px 40px -28px rgba(10, 13, 20, .4)
+        }
+
+        .card-id .photo {
+            display: block;
+            width: auto;
+            height: 250px
+        }
+
+        /* ---------- SECTION HEADS ---------- */
+        .sec {
+            padding: 40px 0
+        }
+
+        .sec-head {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            margin-bottom: 26px;
+            gap: 16px
+        }
+
+        .sec-head h2 {
+            font-family: var(--disp);
+            font-weight: 700;
+            font-size: 30px;
+            letter-spacing: -.01em
+        }
+
+        .sec-head .eyebrow {
+            font-family: var(--mono);
+            font-size: 11px;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: .18em;
+            display: block;
+            margin-bottom: 0
+        }
+
+        .more {
+            font-family: var(--mono);
+            font-size: 12.5px;
+            color: var(--muted);
+            transition: .2s
+        }
+
+        .more:hover {
+            color: var(--accent)
+        }
+
+        /* ---------- TABS ---------- */
+        .tabs {
+            display: flex;
+            gap: 4px;
+            padding: 4px;
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 12px;
+            margin-bottom: 8px;
+            width: fit-content
+        }
+
+        .tab {
+            font-family: var(--mono);
+            font-size: 13px;
+            padding: 8px 22px;
+            border-radius: 9px;
+            cursor: pointer;
+            color: var(--muted);
+            transition: .2s;
+            border: none;
+            background: none
+        }
+
+        .tab.active {
+            background: var(--solid);
+            color: var(--solid-fg)
+        }
+
+        .panel {
+            display: none;
+            animation: fade .4s ease
+        }
+
+        .panel.active {
+            display: block
+        }
+
+        @keyframes fade {
+            from {
+                opacity: 0;
+                transform: translateY(6px)
+            }
+
+            to {
+                opacity: 1;
+                transform: none
+            }
+        }
+
+        /* ---------- TIMELINE ---------- */
+        .timeline {
+            position: relative;
+            margin-top: 24px;
+            padding-left: 30px
+        }
+
+        .timeline:before {
+            content: "";
+            position: absolute;
+            left: 9px;
+            top: 6px;
+            bottom: 6px;
+            width: 2px;
+            background: linear-gradient(var(--line), var(--line))
+        }
+
+        .job {
+            position: relative;
+            padding-bottom: 34px
+        }
+
+        .job:last-child {
+            padding-bottom: 0
+        }
+
+        .node {
+            position: absolute;
+            left: -30px;
+            top: 4px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--card);
+            border: 2px solid var(--teal);
+            display: grid;
+            place-items: center
+        }
+
+        .node:after {
+            content: "";
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--teal)
+        }
+
+        .job.live .node {
+            border-color: var(--accent)
+        }
+
+        .job.live .node:after {
+            background: var(--accent);
+            animation: pulse 1.8s ease-in-out infinite
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 var(--accent-soft)
+            }
+
+            50% {
+                box-shadow: 0 0 0 5px transparent
+            }
+        }
+
+        .job-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 12px;
+            flex-wrap: wrap
+        }
+
+        .job h3 {
+            font-family: var(--disp);
+            font-size: 18px;
+            font-weight: 600
+        }
+
+        .job .when {
+            font-family: var(--mono);
+            font-size: 11.5px;
+            color: var(--muted);
+            white-space: nowrap
+        }
+
+        .job .sub {
+            font-family: var(--mono);
+            font-size: 12.5px;
+            color: var(--teal);
+            margin-top: 2px
+        }
+
+        .job .client {
+            font-size: 13px;
+            color: var(--muted);
+            margin-top: 1px
+        }
+
+        .job ul {
+            margin: 12px 0 0;
+            padding-left: 0;
+            list-style: none;
+            display: grid;
+            gap: 8px
+        }
+
+        .job li {
+            position: relative;
+            padding-left: 18px;
+            font-size: 14.5px;
+            color: var(--ink);
+            opacity: .9;
+            line-height: 1.5
+        }
+
+        .job li:before {
+            content: "›";
+            position: absolute;
+            left: 2px;
+            color: var(--accent);
+            font-family: var(--mono);
+            font-weight: 600
+        }
+
+        .thesislink {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            margin-top: 10px;
+            font-family: var(--mono);
+            font-size: 12px;
+            color: var(--teal);
+            transition: color .2s
+        }
+
+        .thesislink:hover {
+            color: var(--accent)
+        }
+
+        /* ---------- PROJECT CARDS ---------- */
+        .grid2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 18px
+        }
+
+        .pcard {
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            background: var(--card);
+            padding: 20px;
+            transition: .25s;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden
+        }
+
+        .pthumb {
+            display: block;
+            width: calc(100% + 40px);
+            height: auto;
+            margin: -20px -20px 12px;
+            aspect-ratio: 16/6;
+            object-fit: cover;
+            object-position: top center;
+            border-bottom: 1px solid var(--line);
+            background: var(--paper)
+        }
+
+        .pcard:hover {
+            transform: translateY(-3px);
+            border-color: var(--teal);
+            box-shadow: 0 18px 36px -26px rgba(10, 13, 20, .45)
+        }
+
+        .pcard .ptop {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 2px
+        }
+
+        .pcard h3 {
+            font-family: var(--disp);
+            font-size: 19px;
+            font-weight: 600
+        }
+
+        .status {
+            font-family: var(--mono);
+            font-size: 10.5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 3px 9px;
+            border-radius: 999px;
+            border: 1px solid var(--line);
+            color: var(--good)
+        }
+
+        .status .sd {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--good)
+        }
+
+        .status.exp {
+            color: #2c8a9e
+        }
+
+        .status.exp .sd {
+            background: #2c8a9e
+        }
+
+        [data-theme="dark"] .status.exp {
+            color: var(--teal)
+        }
+
+        [data-theme="dark"] .status.exp .sd {
+            background: var(--teal)
+        }
+
+        .status.archived {
+            color: var(--muted)
+        }
+
+        .status.archived .sd {
+            background: var(--muted)
+        }
+
+        .pcard p {
+            font-size: 14px;
+            color: var(--muted);
+            margin-top: 4px;
+            flex: 1
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 12px
+        }
+
+        .tag {
+            font-family: var(--mono);
+            font-size: 9.5px;
+            padding: 2px 7px;
+            border-radius: 6px;
+            background: var(--paper);
+            border: 1px solid var(--line);
+            color: var(--ink);
+            opacity: .8
+        }
+
+        .plinks {
+            display: flex;
+            gap: 8px;
+            margin-top: 14px;
+            flex-wrap: wrap
+        }
+
+        .plink {
+            font-family: var(--mono);
+            font-size: 11.5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 6px 11px;
+            border-radius: 8px;
+            background: var(--solid);
+            color: var(--solid-fg);
+            transition: .2s
+        }
+
+        .plink.alt {
+            background: var(--card);
+            color: var(--ink);
+            border: 1px solid var(--line)
+        }
+
+        .plink:hover {
+            opacity: .85;
+            transform: translateY(-1px)
+        }
+
+        .galbtn {
+            cursor: pointer;
+            font: inherit;
+            font-family: var(--mono);
+            font-size: 11.5px
+        }
+
+        /* ---------- LIGHTBOX ---------- */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 48px 24px;
+            background: rgba(11, 14, 20, .88);
+            backdrop-filter: blur(6px)
+        }
+
+        .lightbox.open {
+            display: flex
+        }
+
+        .lb-stage {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            max-width: min(1100px, 92vw);
+            max-height: 80vh
+        }
+
+        .lb-stage img,
+        .lb-stage video {
+            max-width: 100%;
+            max-height: 80vh;
+            border-radius: 10px;
+            box-shadow: 0 30px 70px -20px rgba(0, 0, 0, .6);
+            background: #000
+        }
+
+        .lb-btn {
+            position: absolute;
+            border: none;
+            background: rgba(255, 255, 255, .12);
+            color: #fff;
+            cursor: pointer;
+            display: grid;
+            place-items: center;
+            transition: .2s
+        }
+
+        .lb-btn:hover {
+            background: var(--accent)
+        }
+
+        .lb-close {
+            top: 18px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            font-size: 17px
+        }
+
+        .lb-nav {
+            top: 50%;
+            transform: translateY(-50%);
+            width: 46px;
+            height: 46px;
+            border-radius: 50%;
+            font-size: 26px;
+            line-height: 1
+        }
+
+        .lb-prev {
+            left: 20px
+        }
+
+        .lb-next {
+            right: 20px
+        }
+
+        .lb-caption {
+            position: absolute;
+            bottom: 44px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            padding: 0 24px;
+            color: #EDEAE2;
+            font-family: var(--mono);
+            font-size: 13px
+        }
+
+        .lb-count {
+            position: absolute;
+            bottom: 22px;
+            left: 0;
+            right: 0;
+            text-align: center;
+            color: var(--muted2);
+            font-family: var(--mono);
+            font-size: 11px
+        }
+
+        @media(max-width:720px) {
+            .lb-nav {
+                width: 38px;
+                height: 38px;
+                font-size: 22px
+            }
+
+            .lb-prev {
+                left: 8px
+            }
+
+            .lb-next {
+                right: 8px
+            }
+        }
+
+        /* ---------- CERTS ---------- */
+        .certs {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 14px 16px
+        }
+
+        .cert {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border: 1px solid var(--line);
+            border-radius: 11px;
+            background: var(--card);
+            padding: 13px 15px;
+            transition: .2s
+        }
+
+        .cert:hover {
+            border-color: var(--teal)
+        }
+
+        .cert .ck {
+            flex: none;
+            width: 22px;
+            height: 22px;
+            display: grid;
+            place-items: center;
+            color: var(--good);
+            border: 1px solid var(--good);
+            border-radius: 6px
+        }
+
+        .cert .ck svg {
+            width: 12px;
+            height: 12px
+        }
+
+        .cert .cn {
+            font-size: 13.5px;
+            font-weight: 500;
+            line-height: 1.3
+        }
+
+        .cert .cm {
+            font-family: var(--mono);
+            font-size: 10.5px;
+            color: var(--muted);
+            margin-top: 2px
+        }
+
+        /* ---------- FOOTER ---------- */
+        footer {
+            border-top: 1px solid var(--line);
+            padding: 30px 0 50px;
+            margin-top: 30px
+        }
+
+        .foot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+            flex-wrap: wrap
+        }
+
+        .foot .copy {
+            font-family: var(--mono);
+            font-size: 12px;
+            color: var(--muted)
+        }
+
+        @media(max-width:720px) {
+            .hero-grid {
+                grid-template-columns: 1fr
+            }
+
+            .card-id {
+                display: none
+            }
+
+            .grid2,
+            .certs {
+                grid-template-columns: 1fr
+            }
+
+            .nav-links {
+                gap: 16px
+            }
+        }
+
+        @media(prefers-reduced-motion:reduce) {
+            * {
+                animation: none !important;
+                transition: none !important
+            }
+        }
+
+        /* scroll reveal — same popup behavior as tidly-sales */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all .7s cubic-bezier(0.16, 1, 0.3, 1)
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0)
+        }
+
+        @media(prefers-reduced-motion:reduce) {
+            .reveal {
+                opacity: 1;
+                transform: none;
+                transition: none
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="nav-in">
+            <div class="nav-links">
+                <a href="#top">home</a>
+                <a href="#work">work</a>
+                <a href="#projects">projects</a>
+                <a href="#certs">certs</a>
+            </div>
+            <div class="nav-spacer"></div>
+            <button class="icon-btn" id="theme" aria-label="Toggle theme" title="Toggle theme">
+                <svg id="theme-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                </svg>
+            </button>
+        </div>
+    </nav>
+
+    <div class="wrap" id="top">
+
+        <!-- HERO -->
+        <header>
+            <div class="hero-grid">
+                <div>
+                    <h1>M. Picheta</h1>
+                    <div class="role">// senior platform engineer · Trondheim, Norway</div>
+                    <p class="blurb">8+ years across cloud-native infrastructure and software development. I build
+                        self-service platforms that let teams provision and run their own infrastructure on Kubernetes.
+                    </p>
+                    <div class="relocate" id="relocate" style="display:none"><span class="hinomaru"></span> 関係なく · open
+                        to relocating to Japan · studying 日本語 (JLPT N5)</div>
+                    <div class="actions">
+                        <a class="btn" href="cv.pdf" target="_blank" rel="noopener">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round">
+                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                                <polyline points="7 10 12 15 17 10" />
+                                <line x1="12" y1="15" x2="12" y2="3" />
+                            </svg>
+                            Resume
+                        </a>
+                        <div class="social">
+                            <a href="mailto:m@picheta.dev" title="Email" aria-label="Email"><svg width="16" height="16"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="2" y="4" width="20" height="16" rx="2" />
+                                    <path d="m22 7-10 6L2 7" />
+                                </svg></a>
+                            <a href="https://github.com/piheta" title="GitHub" aria-label="GitHub" target="_blank"
+                                rel="noopener noreferrer"><svg width="16" height="16" viewBox="0 0 24 24"
+                                    fill="currentColor">
+                                    <path
+                                        d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z" />
+                                </svg></a>
+                            <a href="https://www.linkedin.com/in/mateusz-picheta/" title="LinkedIn"
+                                aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><svg width="16"
+                                    height="16" viewBox="0 0 24 24" fill="currentColor">
+                                    <path
+                                        d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zM8.34 17V10.3H6.16V17h2.18zM7.25 9.4a1.27 1.27 0 1 0 0-2.53 1.27 1.27 0 0 0 0 2.53zM18 17v-3.67c0-1.96-1.05-2.87-2.45-2.87-1.13 0-1.63.62-1.92 1.06v-.91h-2.18c.03.61 0 6.39 0 6.39h2.18v-3.57c0-.2.01-.39.07-.53.16-.39.51-.79 1.11-.79.79 0 1.1.6 1.1 1.47V17H18z" />
+                                </svg></a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-id">
+                    <picture>
+                        <source srcset="img/me.avif" type="image/avif">
+                        <img class="photo" src="img/me.webp" alt="Mateusz Picheta" width="527" height="750">
+                    </picture>
+                </div>
+            </div>
+        </header>
+
+        <!-- WORK / EDUCATION -->
+        <section class="sec" id="work">
+            <div class="tabs" role="tablist">
+                <button class="tab active" data-tab="work">Work</button>
+                <button class="tab" data-tab="edu">Education</button>
+            </div>
+
+            <div class="panel active" id="panel-work">
+                <div class="timeline">
+
+                    <div class="job live reveal">
+                        <div class="node"></div>
+                        <div class="job-top">
+                            <h3>Sopra Steria</h3>
+                            <span class="when">Jan 2025 - Present</span>
+                        </div>
+                        <div class="sub">Senior Cloud Engineer</div>
+                        <div class="client">Client: SINTEF</div>
+                        <ul>
+                            <li>Designed and built the platform's self-service ordering API in Go, letting 91
+                                research teams provision infrastructure on demand instead of submitting schemas for
+                                manual approval. CRUD endpoints generate Crossplane Claims that a Flux pipeline
+                                reconciles into AKS, with 500+ service instances provisioned to date.</li>
+                            <li>Cut response times on the platform's slowest endpoints from 45s to under 1s for hubs with
+                                100+ services.</li>
+                            <li>Built a Terraform provider for full lifecycle management of platform services as code.</li>
+                        </ul>
+                    </div>
+
+                    <div class="job reveal">
+                        <div class="node"></div>
+                        <div class="job-top">
+                            <h3>Tietoevry</h3>
+                            <span class="when">Sep 2023 - Jan 2025</span>
+                        </div>
+                        <div class="sub">Cloud Native DevOps</div>
+                        <div class="client">Across multiple client engagements</div>
+                        <ul>
+                            <li><b>Aneo (Solar Calculator)</b>: DevOps on a React/Python solar-estimation app.
+                                Designed the Azure cloud architecture, wrote the Terraform IaC, and built CI/CD. Built
+                                out the API, moving the calculation logic server-side behind authentication to protect
+                                the proprietary model.</li>
+                            <li><b>Flytoget (Flybag)</b>: Refactored a single-file Terraform configuration into reusable
+                                modules, added CI/CD pipelines, and split out multiple environments.</li>
+                            <li><b>MainTech</b>: Led delivery as PM to MVP for a RAG assistant (LLM) over
+                                SharePoint/OneDrive.</li>
+                        </ul>
+                    </div>
+
+                    <div class="job reveal">
+                        <div class="node"></div>
+                        <div class="job-top">
+                            <h3>Solwr</h3>
+                            <span class="when">Oct 2022 - Sep 2023</span>
+                        </div>
+                        <div class="sub">DevOps (part-time, 60%)</div>
+                        <ul>
+                            <li>Built a production voice-and-touch warehouse picking system plus a WMS from scratch
+                                (Java, PostgreSQL, Keycloak, Docker, Terraform), replacing a paid third-party voice
+                                service to cut licensing costs and enable customer-specific customization.</li>
+                            <li>Deployed OpenVPN, GitLab, and more with Ansible, Terraform, and Kubernetes.</li>
+                        </ul>
+                    </div>
+
+                    <div class="job reveal">
+                        <div class="node"></div>
+                        <div class="job-top">
+                            <h3>Stokke</h3>
+                            <span class="when">Oct 2021 - Oct 2022</span>
+                        </div>
+                        <div class="sub">IT Operations Technician (part-time, 60%)</div>
+                        <ul>
+                            <li>Migrated the on-prem print server to Azure, managed NAS and cloud storage, patched Log4j
+                                vulnerabilities, and supported end users.</li>
+                        </ul>
+                    </div>
+
+                    <div class="job reveal">
+                        <div class="node"></div>
+                        <div class="job-top">
+                            <h3>Ålesund VGS</h3>
+                            <span class="when">Jun 2018 - May 2020</span>
+                        </div>
+                        <div class="sub">IT Operations Technician</div>
+                        <ul>
+                            <li>Operated Linux &amp; Windows servers and network infrastructure, built internal web apps,
+                                managed NAS, and supported end users.</li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="panel" id="panel-edu">
+                <div class="timeline">
+                    <div class="job reveal">
+                        <div class="node"></div>
+                        <div class="job-top">
+                            <h3>NTNU, Norwegian University of Science and Technology</h3>
+                            <span class="when">2023</span>
+                        </div>
+                        <div class="sub">BSc, Computer Science</div>
+                        <a class="thesislink"
+                            href="https://nva.sikt.no/registration/0198eb5abe4a-8289d239-c15f-4dd9-8a0d-d4346b7a46c7"
+                            target="_blank" rel="noopener">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                                <polyline points="14 2 14 8 20 8" />
+                            </svg>
+                            Thesis: Trace Voice Pick →
+                        </a>
+                    </div>
+                    <div class="job reveal">
+                        <div class="node"></div>
+                        <div class="job-top">
+                            <h3>Ålesund VGS</h3>
+                            <span class="when">2020</span>
+                        </div>
+                        <div class="sub">Vocational Certificate in ICT (Fagbrev)</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECTS -->
+        <section class="sec reveal" id="projects">
+            <div class="sec-head">
+                <div style="width:100%"><span class="eyebrow">featured</span><div style="display:flex;align-items:center;justify-content:space-between">
+                        <h2>projects</h2>
+                        <a class="more" href="https://github.com/piheta" target="_blank" rel="noopener noreferrer">view more →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="grid2">
+
+                <div class="pcard reveal">
+                    <img class="pthumb" src="img/tidly.webp" alt="Tidly booking dashboard" loading="lazy" width="800"
+                        height="498">
+                    <div class="ptop">
+                        <h3>Tidly</h3>
+                        <span class="status"><span class="sd"></span>live</span>
+                    </div>
+                    <p>Production multi-tenant SaaS for SMB booking &amp; scheduling. First live customer is a salon
+                        with ~65 bookings/month.</p>
+                    <div class="tags"><span class="tag">Go</span><span class="tag">React</span><span
+                            class="tag">PostgreSQL</span><span class="tag">Kubernetes</span><span
+                            class="tag">Flux</span><span class="tag">Terraform</span><span class="tag">Playwright</span><span class="tag">Trivy</span><span class="tag">Twilio</span></div>
+                    <div class="plinks">
+                        <a class="plink" href="https://tidly.no" target="_blank" rel="noopener noreferrer"><svg
+                                width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10" />
+                                <line x1="2" y1="12" x2="22" y2="12" />
+                                <path
+                                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                            </svg>tidly.no</a>
+                    </div>
+                </div>
+
+                <div class="pcard reveal">
+                    <img class="pthumb" src="img/sept.webp" alt="sept desktop chat client" loading="lazy" width="800"
+                        height="464">
+                    <div class="ptop">
+                        <h3>sept</h3>
+                        <span class="status exp"><span class="sd"></span>prototype</span>
+                    </div>
+                    <p>Serverless, peer-to-peer alternative to Discord. Clients connect directly over WebRTC (pion)
+                        instead of a central server.</p>
+                    <div class="tags"><span class="tag">Go</span><span class="tag">WebRTC</span><span
+                            class="tag">Wails</span><span class="tag">Svelte</span><span class="tag">BadgerDB</span>
+                    </div>
+                    <div class="plinks">
+                        <a class="plink alt" href="https://github.com/piheta/sept" target="_blank"
+                            rel="noopener noreferrer"><svg width="13" height="13" viewBox="0 0 24 24"
+                                fill="currentColor">
+                                <path
+                                    d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z" />
+                            </svg>Source</a>
+                    </div>
+                </div>
+
+                <div class="pcard reveal">
+                    <img class="pthumb" src="img/seqre.webp" alt="seq.re URL shortener UI" loading="lazy" width="800"
+                        height="672">
+                    <div class="ptop">
+                        <h3>seq.re</h3>
+                        <span class="status"><span class="sd"></span>live</span>
+                    </div>
+                    <p>Self-hostable Go utilities suite: URL shortener, encrypted secret / image / code sharing, and IP
+                        lookup. CLI and web UI.</p>
+                    <div class="tags"><span class="tag">Go</span><span class="tag">CLI</span><span
+                            class="tag">htmx</span><span class="tag">Homebrew</span><span class="tag">self-host</span>
+                    </div>
+                    <div class="plinks">
+                        <a class="plink" href="https://seq.re" target="_blank" rel="noopener noreferrer"><svg width="13"
+                                height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10" />
+                                <line x1="2" y1="12" x2="22" y2="12" />
+                                <path
+                                    d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
+                            </svg>seq.re</a>
+                        <a class="plink alt" href="https://github.com/piheta/seq.re" target="_blank"
+                            rel="noopener noreferrer"><svg width="13" height="13" viewBox="0 0 24 24"
+                                fill="currentColor">
+                                <path
+                                    d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z" />
+                            </svg>Source</a>
+                    </div>
+                </div>
+
+                <div class="pcard reveal">
+                    <img class="pthumb" src="img/smidle.webp" alt="smidle Smite Wordle game" loading="lazy" width="800"
+                        height="505">
+                    <div class="ptop">
+                        <h3>smidle</h3>
+                        <span class="status archived"><span class="sd"></span>archived</span>
+                    </div>
+                    <p>Wordle-style daily guessing game for Smite. The launch post drew 1.2k upvotes and 91k views on Reddit, ~20k visitors on launch.</p>
+                    <div class="tags"><span class="tag">Java</span><span class="tag">Spring Boot</span><span
+                            class="tag">Svelte</span><span class="tag">Docker</span><span class="tag">Linux</span></div>
+                    <div class="plinks">
+                        <button class="plink alt galbtn" type="button" id="smidle-gallery">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="3" width="18" height="18" rx="2" />
+                                <circle cx="8.5" cy="8.5" r="1.5" />
+                                <path d="m21 15-5-5L5 21" />
+                            </svg>
+                            Gallery
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- CERTS -->
+        <section class="sec reveal" id="certs">
+            <div class="sec-head">
+                <div style="width:100%"><span class="eyebrow">issued</span><div style="display:flex;align-items:center;justify-content:space-between">
+                        <h2>certifications</h2>
+                        <a class="more" href="https://www.credly.com/users/mateusz-picheta/badges/credly" target="_blank" rel="noopener noreferrer">verify on Credly →</a>
+                    </div>
+                </div>
+            </div>
+            <div class="certs">
+                <div class="cert reveal"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg></span>
+                    <div>
+                        <div class="cn">Terraform Associate (004)</div>
+                        <div class="cm">HashiCorp · Apr 2026</div>
+                    </div>
+                </div>
+                <div class="cert reveal"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg></span>
+                    <div>
+                        <div class="cn">Cloud Native Platform Engineering Assoc.</div>
+                        <div class="cm">CNPA · Linux Foundation · Oct 2025</div>
+                    </div>
+                </div>
+                <div class="cert reveal"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg></span>
+                    <div>
+                        <div class="cn">GitHub Actions</div>
+                        <div class="cm">GitHub · Oct 2025</div>
+                    </div>
+                </div>
+                <div class="cert reveal"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg></span>
+                    <div>
+                        <div class="cn">Prometheus Certified Associate</div>
+                        <div class="cm">PCA · Linux Foundation · Sep 2025</div>
+                    </div>
+                </div>
+                <div class="cert reveal"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg></span>
+                    <div>
+                        <div class="cn">Kubernetes &amp; Cloud Native Security</div>
+                        <div class="cm">KCSA · Linux Foundation · Sep 2025</div>
+                    </div>
+                </div>
+                <div class="cert reveal"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg></span>
+                    <div>
+                        <div class="cn">GitOps Associate</div>
+                        <div class="cm">CGOA · Linux Foundation · Sep 2025</div>
+                    </div>
+                </div>
+                <div class="cert reveal"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg></span>
+                    <div>
+                        <div class="cn">Kubernetes &amp; Cloud Native Assoc.</div>
+                        <div class="cm">KCNA · Linux Foundation · Jan 2025</div>
+                    </div>
+                </div>
+                <div class="cert reveal"><span class="ck"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                            stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12" />
+                        </svg></span>
+                    <div>
+                        <div class="cn">Linux Foundation Certified Sysadmin</div>
+                        <div class="cm">LFCS · Linux Foundation · May 2024</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <footer>
+        <div class="wrap foot">
+            <span class="copy">© 2026 picheta.dev</span>
+            <div class="social">
+                <a href="mailto:m@picheta.dev" aria-label="Email"><svg width="16" height="16" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2">
+                        <rect x="2" y="4" width="20" height="16" rx="2" />
+                        <path d="m22 7-10 6L2 7" />
+                    </svg></a>
+                <a href="https://github.com/piheta" aria-label="GitHub" target="_blank" rel="noopener noreferrer"><svg
+                        width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M12 .5C5.7.5.5 5.7.5 12c0 5.1 3.3 9.4 7.9 10.9.6.1.8-.2.8-.5v-2c-3.2.7-3.9-1.4-3.9-1.4-.5-1.3-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.8 0-1.3.5-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.5-2.7 5.5-5.3 5.8.4.4.8 1.1.8 2.2v3.3c0 .3.2.6.8.5 4.6-1.5 7.9-5.8 7.9-10.9C23.5 5.7 18.3.5 12 .5z" />
+                    </svg></a>
+                <a href="https://www.linkedin.com/in/mateusz-picheta/" aria-label="LinkedIn" target="_blank"
+                    rel="noopener noreferrer"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14zM8.34 17V10.3H6.16V17h2.18zM7.25 9.4a1.27 1.27 0 1 0 0-2.53 1.27 1.27 0 0 0 0 2.53zM18 17v-3.67c0-1.96-1.05-2.87-2.45-2.87-1.13 0-1.63.62-1.92 1.06v-.91h-2.18c.03.61 0 6.39 0 6.39h2.18v-3.57c0-.2.01-.39.07-.53.16-.39.51-.79 1.11-.79.79 0 1.1.6 1.1 1.47V17H18z" />
+                    </svg></a>
+            </div>
+        </div>
+    </footer>
+
+    <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="smidle gallery">
+        <button class="lb-btn lb-close" id="lb-close" aria-label="Close gallery">✕</button>
+        <button class="lb-btn lb-nav lb-prev" id="lb-prev" aria-label="Previous">‹</button>
+        <div class="lb-stage" id="lb-stage"></div>
+        <button class="lb-btn lb-nav lb-next" id="lb-next" aria-label="Next">›</button>
+        <div class="lb-caption" id="lb-caption"></div>
+        <div class="lb-count" id="lb-count"></div>
+    </div>
+
+    <script>
+        // theme toggle
+        const root = document.documentElement, tbtn = document.getElementById('theme'), ticon = document.getElementById('theme-icon');
+        const sun = '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>';
+        const moon = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+        function setTheme(t) {root.setAttribute('data-theme', t); ticon.innerHTML = t === 'dark' ? sun : moon;}
+        setTheme(root.getAttribute('data-theme') || 'light');
+        tbtn.addEventListener('click', () => {const t = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'; setTheme(t); try {localStorage.setItem('theme', t);} catch (e) { } });
+
+        // tabs
+        document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => {
+            document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+            document.querySelectorAll('.panel').forEach(x => x.classList.remove('active'));
+            t.classList.add('active');
+            document.getElementById('panel-' + (t.dataset.tab === 'work' ? 'work' : 'edu')).classList.add('active');
+        }));
+
+        // show the Japan relocation banner only to visitors in Japan
+        (function () {
+            const el = document.getElementById('relocate');
+            if (!el) return;
+            fetch('/cdn-cgi/trace').then(r => r.text()).then(t => {
+                const loc = (t.match(/^loc=([A-Z]{2})/m) || [])[1];
+                if (loc === 'JP') el.style.display = 'inline-flex';
+            }).catch(() => { });
+        })();
+
+        // smidle gallery lightbox
+        (function () {
+            const items = [
+                {type: 'video', src: 'img/smidle-demo.mp4', cap: 'Gameplay: guess the Smite god from its traits'},
+                {type: 'img', src: 'img/smidle-reddit.webp', cap: 'Launch post on r/Smite'},
+                {type: 'img', src: 'img/smidle-stats.webp', cap: 'Reddit post insights: 91k views, 1.2k upvotes, 98.6% upvote ratio'},
+                {type: 'img', src: 'img/smidle-traffic.webp', cap: 'Cloudflare: 7k unique visitors / 405k requests in 24h'}
+            ];
+            const lb = document.getElementById('lightbox'),
+                stage = document.getElementById('lb-stage'),
+                cap = document.getElementById('lb-caption'),
+                count = document.getElementById('lb-count'),
+                btn = document.getElementById('smidle-gallery');
+            let i = 0;
+            function render() {
+                const it = items[i];
+                stage.innerHTML = it.type === 'video'
+                    ? '<video src="' + it.src + '" controls autoplay muted loop playsinline></video>'
+                    : '<img src="' + it.src + '" alt="' + it.cap + '">';
+                cap.textContent = it.cap;
+                count.textContent = (i + 1) + ' / ' + items.length;
+            }
+            function open(n) {i = n; render(); lb.classList.add('open'); lb.setAttribute('aria-hidden', 'false'); document.body.style.overflow = 'hidden';}
+            function close() {lb.classList.remove('open'); lb.setAttribute('aria-hidden', 'true'); stage.innerHTML = ''; document.body.style.overflow = '';}
+            function go(d) {i = (i + d + items.length) % items.length; render();}
+            btn.addEventListener('click', () => open(0));
+            document.getElementById('lb-close').addEventListener('click', close);
+            document.getElementById('lb-prev').addEventListener('click', e => {e.stopPropagation(); go(-1);});
+            document.getElementById('lb-next').addEventListener('click', e => {e.stopPropagation(); go(1);});
+            lb.addEventListener('click', e => {if (e.target === lb) close();});
+            document.addEventListener('keydown', e => {
+                if (!lb.classList.contains('open')) return;
+                if (e.key === 'Escape') close();
+                else if (e.key === 'ArrowLeft') go(-1);
+                else if (e.key === 'ArrowRight') go(1);
+            });
+        })();
+
+        // scroll reveal — same popup behavior as tidly-sales
+        (function () {
+            const els = [...document.querySelectorAll('.reveal')];
+            const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (reduce || !('IntersectionObserver' in window)) {els.forEach(e => e.classList.add('visible')); return;}
+            const io = new IntersectionObserver((entries) => {
+                entries.forEach(en => {
+                    if (en.isIntersecting) {en.target.classList.add('visible'); io.unobserve(en.target);}
+                });
+            }, {threshold: 0, rootMargin: '0px 0px -30px 0px'});
+            els.forEach(e => io.observe(e));
+        })();
+    </script>
+</body>
+
 </html>
