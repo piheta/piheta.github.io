@@ -26,12 +26,34 @@
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;450;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap"
-        rel="stylesheet">
+    <link rel="preload" href="fonts/inter.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/space-grotesk.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/jetbrains-mono.woff2" as="font" type="font/woff2" crossorigin>
     <style>
+        @font-face {
+            font-family: 'Inter';
+            font-style: normal;
+            font-weight: 100 900;
+            font-display: swap;
+            src: url(fonts/inter.woff2) format('woff2');
+        }
+
+        @font-face {
+            font-family: 'Space Grotesk';
+            font-style: normal;
+            font-weight: 300 700;
+            font-display: swap;
+            src: url(fonts/space-grotesk.woff2) format('woff2');
+        }
+
+        @font-face {
+            font-family: 'JetBrains Mono';
+            font-style: normal;
+            font-weight: 100 800;
+            font-display: swap;
+            src: url(fonts/jetbrains-mono.woff2) format('woff2');
+        }
+
         :root {
             --ink: #0B0E14;
             --teal: #1B3A4B;
@@ -49,6 +71,7 @@
             --mono: 'JetBrains Mono', ui-monospace, monospace;
             --disp: 'Space Grotesk', system-ui, sans-serif;
             --body: 'Inter', system-ui, sans-serif;
+            color-scheme: light;
         }
 
         [data-theme="dark"] {
@@ -64,6 +87,7 @@
             --good: #3FBE82;
             --solid: #1f3a4b;
             --solid-fg: #EDEAE2;
+            color-scheme: dark;
         }
 
         * {
@@ -73,7 +97,9 @@
         }
 
         html {
-            scroll-behavior: smooth
+            scroll-behavior: smooth;
+            background: var(--paper);
+            color: var(--ink)
         }
 
         body {
