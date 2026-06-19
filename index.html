@@ -9,7 +9,6 @@
         content="Senior platform engineer with 8+ years in cloud-native infrastructure. I build self-service platforms on Kubernetes with Crossplane, Flux, Go, and Terraform. Based in Trondheim, Norway.">
     <link rel="canonical" href="https://picheta.dev/">
 
-    <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://picheta.dev/">
     <meta property="og:title" content="Mateusz Picheta · Senior Platform Engineer">
@@ -19,7 +18,6 @@
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
 
-    <!-- X/Twitter: only the large-image hint; everything else falls back to Open Graph -->
     <meta name="twitter:card" content="summary_large_image">
 
     <script data-cfasync="false">(function () {try {var t = localStorage.getItem('theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); document.documentElement.setAttribute('data-theme', t);} catch (e) { } })();</script>
@@ -128,7 +126,6 @@
             padding: 0 24px
         }
 
-        /* ---------- NAV ---------- */
         nav {
             position: sticky;
             top: 0;
@@ -163,6 +160,10 @@
             color: var(--accent)
         }
 
+        .nav-links a.active {
+            color: var(--accent)
+        }
+
         .nav-spacer {
             flex: 1
         }
@@ -184,7 +185,6 @@
             color: var(--accent)
         }
 
-        /* ---------- HERO ---------- */
         header {
             padding: 64px 0 40px
         }
@@ -298,7 +298,6 @@
             transform: translateY(-2px)
         }
 
-        /* avatar / manifest card */
         .card-id {
             width: fit-content;
             border-radius: var(--radius);
@@ -313,7 +312,6 @@
             height: 250px
         }
 
-        /* ---------- SECTION HEADS ---------- */
         .sec {
             padding: 40px 0
         }
@@ -354,7 +352,6 @@
             color: var(--accent)
         }
 
-        /* ---------- TABS ---------- */
         .tabs {
             display: flex;
             gap: 4px;
@@ -404,7 +401,6 @@
             }
         }
 
-        /* ---------- TIMELINE ---------- */
         .timeline {
             position: relative;
             margin-top: 24px;
@@ -549,7 +545,6 @@
             color: var(--accent)
         }
 
-        /* ---------- PROJECT CARDS ---------- */
         .grid2 {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -704,7 +699,6 @@
             font-size: 11.5px
         }
 
-        /* ---------- LIGHTBOX ---------- */
         .lightbox {
             position: fixed;
             inset: 0;
@@ -819,7 +813,6 @@
             }
         }
 
-        /* ---------- CERTS ---------- */
         .certs {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -870,7 +863,6 @@
             margin-top: 2px
         }
 
-        /* ---------- FOOTER ---------- */
         footer {
             border-top: 1px solid var(--line);
             padding: 30px 0 50px;
@@ -917,7 +909,6 @@
             }
         }
 
-        /* scroll reveal — same popup behavior as tidly-sales */
         .reveal {
             opacity: 0;
             transform: translateY(30px);
@@ -961,7 +952,6 @@
 
     <div class="wrap" id="top">
 
-        <!-- HERO -->
         <header>
             <div class="hero-grid">
                 <div>
@@ -1016,7 +1006,6 @@
             </div>
         </header>
 
-        <!-- WORK / EDUCATION -->
         <section class="sec" id="work">
             <div class="tabs" role="tablist">
                 <button class="tab active" data-tab="work">Work</button>
@@ -1141,7 +1130,6 @@
             </div>
         </section>
 
-        <!-- PROJECTS -->
         <section class="sec reveal" id="projects">
             <div class="sec-head">
                 <div style="width:100%"><span class="eyebrow">featured</span><div style="display:flex;align-items:center;justify-content:space-between">
@@ -1254,7 +1242,6 @@
             </div>
         </section>
 
-        <!-- CERTS -->
         <section class="sec reveal" id="certs">
             <div class="sec-head">
                 <div style="width:100%"><span class="eyebrow">issued</span><div style="display:flex;align-items:center;justify-content:space-between">
@@ -1374,7 +1361,6 @@
     </div>
 
     <script>
-        // theme toggle
         const root = document.documentElement, tbtn = document.getElementById('theme'), ticon = document.getElementById('theme-icon');
         const sun = '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>';
         const moon = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
@@ -1382,7 +1368,6 @@
         setTheme(root.getAttribute('data-theme') || 'light');
         tbtn.addEventListener('click', () => {const t = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'; setTheme(t); try {localStorage.setItem('theme', t);} catch (e) { } });
 
-        // tabs
         document.querySelectorAll('.tab').forEach(t => t.addEventListener('click', () => {
             document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
             document.querySelectorAll('.panel').forEach(x => x.classList.remove('active'));
@@ -1390,7 +1375,6 @@
             document.getElementById('panel-' + (t.dataset.tab === 'work' ? 'work' : 'edu')).classList.add('active');
         }));
 
-        // show the Japan relocation banner only to visitors in Japan
         (function () {
             const el = document.getElementById('relocate');
             if (!el) return;
@@ -1400,7 +1384,6 @@
             }).catch(() => { });
         })();
 
-        // smidle gallery lightbox
         (function () {
             const items = [
                 {type: 'video', src: 'img/smidle-demo.mp4', cap: 'Gameplay: guess the Smite god from its traits'},
@@ -1438,7 +1421,6 @@
             });
         })();
 
-        // scroll reveal — same popup behavior as tidly-sales
         (function () {
             const els = [...document.querySelectorAll('.reveal')];
             const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1449,6 +1431,31 @@
                 });
             }, {threshold: 0, rootMargin: '0px 0px -30px 0px'});
             els.forEach(e => io.observe(e));
+        })();
+
+        (function () {
+            const pairs = [
+                ['#top', document.querySelector('header')],
+                ['#work', document.getElementById('work')],
+                ['#projects', document.getElementById('projects')],
+                ['#certs', document.getElementById('certs')]
+            ].map(([sel, el]) => ({ link: document.querySelector('.nav-links a[href="' + sel + '"]'), el }))
+                .filter(p => p.link && p.el);
+            if (!pairs.length) return;
+            pairs[0].link.addEventListener('click', e => { e.preventDefault(); scrollTo({ top: 0, behavior: 'smooth' }); });
+            let ticking = false;
+            function update() {
+                ticking = false;
+                const line = window.innerHeight * 0.28;
+                let active = pairs[0].link;
+                for (const p of pairs) if (p.el.getBoundingClientRect().top <= line) active = p.link;
+                if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) active = pairs[pairs.length - 1].link;
+                pairs.forEach(p => p.link.classList.toggle('active', p.link === active));
+            }
+            function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
+            addEventListener('scroll', onScroll, { passive: true });
+            addEventListener('resize', onScroll);
+            update();
         })();
     </script>
 </body>
