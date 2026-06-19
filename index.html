@@ -452,23 +452,25 @@
         }
 
         .job.live .node {
-            border-color: var(--accent)
+            border-color: var(--accent);
+            animation: pulse 2s ease-out infinite
         }
 
         .job.live .node:after {
-            background: var(--accent);
-            animation: pulse 1.8s ease-in-out infinite
+            background: var(--accent)
         }
 
         @keyframes pulse {
-
-            0%,
-            100% {
-                box-shadow: 0 0 0 0 var(--accent-soft)
+            0% {
+                box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 55%, transparent)
             }
 
-            50% {
-                box-shadow: 0 0 0 5px transparent
+            70% {
+                box-shadow: 0 0 0 10px transparent
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 transparent
             }
         }
 
