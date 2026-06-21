@@ -20,7 +20,8 @@
 
     <meta name="twitter:card" content="summary_large_image">
 
-    <script data-cfasync="false">(function () {try {var t = localStorage.getItem('theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); document.documentElement.setAttribute('data-theme', t);} catch (e) { } })();</script>
+    <script
+        data-cfasync="false">(function () {try {var t = localStorage.getItem('theme') || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'); document.documentElement.setAttribute('data-theme', t);} catch (e) { } })();</script>
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
     <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -652,8 +653,8 @@
 
         .tag {
             font-family: var(--mono);
-            font-size: 9.5px;
-            padding: 2px 7px;
+            font-size: 11px;
+            padding: 3px 5px;
             border-radius: 6px;
             background: var(--paper);
             border: 1px solid var(--line);
@@ -1028,9 +1029,12 @@
                                 research teams provision infrastructure on demand instead of submitting schemas for
                                 manual approval. CRUD endpoints generate Crossplane Claims that a Flux pipeline
                                 reconciles into AKS, with 500+ service instances provisioned to date.</li>
-                            <li>Cut response times on the platform's slowest endpoints from 45s to under 1s for hubs with
+                            <li>Cut response times on the platform's slowest endpoints from 45s to under 1s for hubs
+                                with
                                 100+ services.</li>
-                            <li>Built a Terraform provider for full lifecycle management of platform services as code.</li>
+                            <li>Built a Terraform provider in Go for full lifecycle management of platform services as
+                                code.
+                            </li>
                         </ul>
                     </div>
 
@@ -1051,6 +1055,7 @@
                                 modules, added CI/CD pipelines, and split out multiple environments.</li>
                             <li><b>MainTech</b>: Led delivery as PM to MVP for a RAG assistant (LLM) over
                                 SharePoint/OneDrive.</li>
+                            <li><b>Tietoevry</b>: Built internal tooling in Go to support the delivery teams.</li>
                         </ul>
                     </div>
 
@@ -1090,7 +1095,8 @@
                         </div>
                         <div class="sub">IT Operations Technician</div>
                         <ul>
-                            <li>Operated Linux &amp; Windows servers and network infrastructure, built internal web apps,
+                            <li>Operated Linux &amp; Windows servers and network infrastructure, built internal web
+                                apps,
                                 managed NAS, and supported end users.</li>
                         </ul>
                     </div>
@@ -1132,9 +1138,11 @@
 
         <section class="sec reveal" id="projects">
             <div class="sec-head">
-                <div style="width:100%"><span class="eyebrow">featured</span><div style="display:flex;align-items:center;justify-content:space-between">
+                <div style="width:100%"><span class="eyebrow">featured</span>
+                    <div style="display:flex;align-items:center;justify-content:space-between">
                         <h2>projects</h2>
-                        <a class="more" href="https://github.com/piheta" target="_blank" rel="noopener noreferrer">view more →</a>
+                        <a class="more" href="https://github.com/piheta" target="_blank" rel="noopener noreferrer">view
+                            more →</a>
                     </div>
                 </div>
             </div>
@@ -1151,7 +1159,9 @@
                         with ~65 bookings/month.</p>
                     <div class="tags"><span class="tag">Go</span><span class="tag">React</span><span
                             class="tag">PostgreSQL</span><span class="tag">Kubernetes</span><span
-                            class="tag">Flux</span><span class="tag">Terraform</span><span class="tag">Playwright</span><span class="tag">Trivy</span><span class="tag">Twilio</span></div>
+                            class="tag">Flux</span><span class="tag">Terraform</span><span
+                            class="tag">Playwright</span><span class="tag">Trivy</span><span class="tag">Twilio</span>
+                    </div>
                     <div class="plinks">
                         <a class="plink" href="https://tidly.no" target="_blank" rel="noopener noreferrer"><svg
                                 width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -1223,7 +1233,8 @@
                         <h3>smidle</h3>
                         <span class="status archived"><span class="sd"></span>archived</span>
                     </div>
-                    <p>Wordle-style daily guessing game for Smite. The launch post drew 1.2k upvotes and 91k views on Reddit, ~20k visitors on launch.</p>
+                    <p>Wordle-style daily guessing game for Smite. The launch post drew 1.2k upvotes and 91k views on
+                        Reddit, ~20k visitors on launch.</p>
                     <div class="tags"><span class="tag">Java</span><span class="tag">Spring Boot</span><span
                             class="tag">Svelte</span><span class="tag">Docker</span><span class="tag">Linux</span></div>
                     <div class="plinks">
@@ -1244,9 +1255,11 @@
 
         <section class="sec reveal" id="certs">
             <div class="sec-head">
-                <div style="width:100%"><span class="eyebrow">issued</span><div style="display:flex;align-items:center;justify-content:space-between">
+                <div style="width:100%"><span class="eyebrow">issued</span>
+                    <div style="display:flex;align-items:center;justify-content:space-between">
                         <h2>certifications</h2>
-                        <a class="more" href="https://www.credly.com/users/mateusz-picheta/badges/credly" target="_blank" rel="noopener noreferrer">verify on Credly →</a>
+                        <a class="more" href="https://www.credly.com/users/mateusz-picheta/badges/credly"
+                            target="_blank" rel="noopener noreferrer">verify on Credly →</a>
                     </div>
                 </div>
             </div>
@@ -1439,10 +1452,10 @@
                 ['#work', document.getElementById('work')],
                 ['#projects', document.getElementById('projects')],
                 ['#certs', document.getElementById('certs')]
-            ].map(([sel, el]) => ({ link: document.querySelector('.nav-links a[href="' + sel + '"]'), el }))
+            ].map(([sel, el]) => ({link: document.querySelector('.nav-links a[href="' + sel + '"]'), el}))
                 .filter(p => p.link && p.el);
             if (!pairs.length) return;
-            pairs[0].link.addEventListener('click', e => { e.preventDefault(); scrollTo({ top: 0, behavior: 'smooth' }); });
+            pairs[0].link.addEventListener('click', e => {e.preventDefault(); scrollTo({top: 0, behavior: 'smooth'});});
             let ticking = false;
             function update() {
                 ticking = false;
@@ -1452,8 +1465,8 @@
                 if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) active = pairs[pairs.length - 1].link;
                 pairs.forEach(p => p.link.classList.toggle('active', p.link === active));
             }
-            function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(update); } }
-            addEventListener('scroll', onScroll, { passive: true });
+            function onScroll() {if (!ticking) {ticking = true; requestAnimationFrame(update);} }
+            addEventListener('scroll', onScroll, {passive: true});
             addEventListener('resize', onScroll);
             update();
         })();
